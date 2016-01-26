@@ -6,7 +6,80 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.bukbukbukh.movierating.register_screen">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:hint="First Name"
+        android:id="@+id/first_name"
+        android:layout_marginTop="58dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:hint="Last Name"
+        android:id="@+id/last_name"
+        android:layout_alignTop="@+id/first_name"
+        android:layout_toRightOf="@+id/user_n"
+        android:layout_toEndOf="@+id/user_n" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:hint="User Name"
+        android:id="@+id/user_n"
+        android:layout_below="@+id/last_name"
+        android:layout_toRightOf="@+id/first_name"
+        android:layout_toEndOf="@+id/first_name" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:hint="Password"
+        android:id="@+id/pass"
+        android:password="true"
+        android:layout_below="@+id/user_n"
+        android:layout_alignLeft="@+id/user_n"
+        android:layout_alignStart="@+id/user_n" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:hint="Confirm Password"
+        android:password="true"
+        android:id="@+id/conf_pass"
+        android:layout_below="@+id/pass"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:id="@+id/reg_button"
+        android:layout_below="@+id/conf_pass"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="47dp"
+        android:onClick="registerUser"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:id="@+id/canc_butt"
+        android:layout_below="@+id/reg_button"
+        android:layout_alignLeft="@+id/reg_button"
+        android:layout_alignStart="@+id/reg_button" />
 
 </RelativeLayout>

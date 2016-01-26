@@ -42,6 +42,10 @@ public class User {
         return numOfUsers;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public void setFirst_name(String fname) {
         first_name = fname;
     }

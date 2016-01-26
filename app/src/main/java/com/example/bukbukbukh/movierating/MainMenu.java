@@ -3,18 +3,24 @@ package com.example.bukbukbukh.movierating;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 public class MainMenu extends AppCompatActivity {
 
+    String username;
+    MainDatabase mDb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
-        Intent intent = new Intent(this, null);
-        String username = intent.getStringExtra("USERNAME");
+        Intent intent = getIntent();
+        username = intent.getStringExtra("USERNAME");
+        mDb = MainDatabase.getInstance(this);
+        Log.d("anyString", username);
 
     }
 
@@ -42,6 +48,7 @@ public class MainMenu extends AppCompatActivity {
 
     public void logout(View view) {
         Intent intent = new Intent(this, WelcomeScreen.class);
+        mDb.changeLoginStatusFalse(username);
         startActivity(intent);
     }
 }

@@ -41,11 +41,21 @@ public class WelcomeScreen extends AppCompatActivity {
     }
 
     public void goLoginScreen(View view) {
-        Intent intent = new Intent(this, login_screen.class);
-        startActivity(intent);
+
+        String userName = mDB.getLoginStatusTrue();
+        if (userName != null) {
+            Intent intent = new Intent(this, MainMenu.class);
+            intent.putExtra("USERNAME", userName);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(this, login_screen.class);
+            startActivity(intent);
+        }
+
     }
 
     public void goRegisterScreen(View view) {
         Intent intent = new Intent(this, register_screen.class);
+        startActivity(intent);
     }
 }

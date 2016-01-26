@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by bukbukbukh on 1/24/16.
@@ -108,15 +109,42 @@ public class MainDatabase extends SQLiteOpenHelper {
         db.execSQL(sql);
     }
 
-    public boolean getLoginStatusTrue() {
+    public String getLoginStatusTrue() {
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "SELECT * FROM " + USER_PASSWORD + " WHERE " + LOGIN_STATUS + " = 1";
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                return true;
+                String returnString = cursor.getString(cursor.getColumnIndex(USER_NAME));
+                return returnString;
             } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public boolean addUser(User user) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int num = user.getNumOfUsers();
+        String firstName = user.getFirst_name();
+        String lastName = user.getLast_name();
+        String userName = user.getUser_name();
+        String password = user.getPassword();
+        int loginStatus = 0;
+
+        String sql = "SELECT * FROM " + USER_PASSWORD + " WHERE " + USER_NAME + " = '" + userName + "';";
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
                 return false;
+            } else {
+                String sql1 = "INSERT INTO " + USER_PASSWORD + " (" + ID + ", " + FIRST_NAME + ", " + LAST_NAME + ", " + USER_NAME + ", " + PASSWORD + ", " + LOGIN_STATUS + ") "
+                        + "VALUES (" + num + ", '" + firstName + "', '" + lastName + "', '" + userName + "', '" + password + "', " + loginStatus + ");";
+                Log.d("sql", sql1);
+                db.execSQL(sql1);
+                return true;
             }
         } else {
             return false;

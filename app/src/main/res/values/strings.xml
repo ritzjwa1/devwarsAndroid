@@ -9,4 +9,7 @@
     <string name="loginFailure">Login Failed</string>
     <string name="StopLogin"> Used 3 Login Attempts</string>
     <string name="title_activity_main_menu">MainMenu</string>
+    <string name="register_status1">Passwords are not matching</string>
+    <string name="register_status2">User already exists</string>
+    <string name="register_status3">Registration Successful </string>
 </resources>
