@@ -1,8 +1,10 @@
 package com.example.bukbukbukh.movierating;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +13,31 @@ public class WelcomeScreen extends AppCompatActivity {
 
     MainDatabase mDB;
 
+    private class DownloadTask extends AsyncTask<String, Long, String> {
+        protected String doInBackground(String... urls) {
+            try {
+                HttpRequest request = HttpRequest.get(urls[0]);
+                String file = null;
+                if (request.ok()) {
+                    file = request.body();
+                }
+                return file;
+            } catch (HttpRequest.HttpRequestException exception) {
+                return null;
+            }
+        }
+
+        protected void onProgressUpdate(Long... progress) {
+            //Log.d("MyApp", "Downloaded bytes: " + progress[0]);
+        }
+
+        protected void onPostExecute(String file) {
+            if (file != null)
+                Log.d("symbol", file);
+            else
+                Log.d("MyApp", "Download failed");
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +67,8 @@ public class WelcomeScreen extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // Go to Login Screen
+    // Checks if someone is already logged in and redirects to the profile page if so
     public void goLoginScreen(View view) {
 
         String userName = mDB.getLoginStatusTrue();
@@ -54,8 +83,15 @@ public class WelcomeScreen extends AppCompatActivity {
 
     }
 
+    // Goes to Register screen
     public void goRegisterScreen(View view) {
         Intent intent = new Intent(this, register_screen.class);
         startActivity(intent);
+    }
+
+    // A test for a http request
+    public void httpGet(View view) {
+        new DownloadTask().execute("https://tranquil-garden-87268.herokuapp.com/:id");
+
     }
 }

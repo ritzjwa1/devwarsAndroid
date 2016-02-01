@@ -33,4 +33,14 @@
         android:id="@+id/welcome"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Http Get Request"
+        android:id="@+id/http_get"
+        android:layout_above="@+id/login_button"
+        android:layout_centerHorizontal="true"
+        android:onClick="httpGet"/>
 </RelativeLayout>
