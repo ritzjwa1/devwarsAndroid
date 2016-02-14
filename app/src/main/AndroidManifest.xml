@@ -33,9 +33,17 @@
             android:value="@integer/google_play_services_version" />
 
         <dependency>
-            <groupId>com.github.kevinsawicki</groupId>
-            <artifactId>http-request</artifactId>
-            <version>6.0</version>
+            <groupId>
+com.github.kevinsawicki
+            </groupId>
+
+            <artifactId>
+http-request
+            </artifactId>
+
+            <version>
+6.0
+            </version>
         </dependency>
 
         <activity
@@ -49,6 +57,10 @@
         <activity
             android:name=".MainMenu"
             android:label="@string/title_activity_main_menu" >
+        </activity>
+        <activity
+            android:name=".ProfilePage"
+            android:label="@string/title_activity_profile_page" >
         </activity>
     </application>
 

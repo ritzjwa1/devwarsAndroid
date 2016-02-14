@@ -6,31 +6,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
-public class MainMenu extends AppCompatActivity {
-
-    String username;
-    MainDatabase mDb;
+public class ProfilePage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_menu);
+        setContentView(R.layout.activity_profile_page);
         Intent intent = getIntent();
-        username = intent.getStringExtra("USERNAME");
-        mDb = MainDatabase.getInstance(this);
-        TextView dispUserName = (TextView) findViewById(R.id.disp_username);
-        dispUserName.setText("Welcome " + username);
-        Log.d("anyString", username);
+        String username = intent.getStringExtra("USER_NAME");
+        Log.d("user", username);
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main_menu, menu);
+        getMenuInflater().inflate(R.menu.menu_profile_page, menu);
         return true;
     }
 
@@ -47,17 +39,5 @@ public class MainMenu extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void logout(View view) {
-        Intent intent = new Intent(this, WelcomeScreen.class);
-        mDb.changeLoginStatusFalse(username);
-        startActivity(intent);
-    }
-
-    public void goProfilePage(View view) {
-        Intent intent = new Intent(this, ProfilePage.class);
-        intent.putExtra("USER_NAME", username);
-        startActivity(intent);
     }
 }

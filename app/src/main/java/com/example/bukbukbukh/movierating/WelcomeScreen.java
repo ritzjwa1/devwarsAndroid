@@ -13,7 +13,7 @@ public class WelcomeScreen extends AppCompatActivity {
 
     MainDatabase mDB;
 
-    private class DownloadTask extends AsyncTask<String, Long, String> {
+    private class TestTask extends AsyncTask<String, Long, String> {
         protected String doInBackground(String... urls) {
             try {
                 HttpRequest request = HttpRequest.get(urls[0]);
@@ -91,7 +91,7 @@ public class WelcomeScreen extends AppCompatActivity {
 
     // A test for a http request
     public void httpGet(View view) {
-        new DownloadTask().execute("https://tranquil-garden-87268.herokuapp.com/:id");
+        new TestTask().execute("https://tranquil-garden-87268.herokuapp.com/:id");
 
     }
 }
