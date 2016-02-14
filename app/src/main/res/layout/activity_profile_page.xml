@@ -21,10 +21,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change "
-        android:id="@+id/c_username"
+        android:id="@+id/c_password"
         android:layout_marginTop="58dp"
         android:layout_below="@+id/change_password2"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="changePassword"/>
 
     <EditText
         android:layout_width="wrap_content"
