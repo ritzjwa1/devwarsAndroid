@@ -53,7 +53,7 @@ public class register_screen extends AppCompatActivity {
         protected String doInBackground(String... urls) {
             try {
                 Map<String, String> keyValuePairs = new HashMap<String, String>();
-                keyValuePairs.put("id", Integer.toString(globUser.getNumOfUsers()));
+                //keyValuePairs.put("id", Integer.toString(globUser.getNumOfUsers()));
                 keyValuePairs.put("name", name);
                 keyValuePairs.put("username", username);
                 keyValuePairs.put("password", password);
@@ -98,6 +98,7 @@ public class register_screen extends AppCompatActivity {
         username = ed3.getText().toString();
         password = ed4.getText().toString();
         globUser = new User(ed1.getText().toString(), ed1.getText().toString(), username, password);
+        Log.d("ID", Integer.toString(globUser.getNumOfUsers()));
         if (ed5.getText().toString().equals(ed4.getText().toString())) {
             new RegisterTask().execute("https://pandango.herokuapp.com/userRegistration");
 
@@ -120,5 +121,10 @@ public class register_screen extends AppCompatActivity {
             checkRegisterStatus.show(getFragmentManager(), "dialog");
         }
 
+    }
+
+    public void cancelButtonReg(View view) {
+        Intent intent = new Intent(this, WelcomeScreen.class);
+        startActivity(intent);
     }
 }

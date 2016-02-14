@@ -88,10 +88,4 @@ public class WelcomeScreen extends AppCompatActivity {
         Intent intent = new Intent(this, register_screen.class);
         startActivity(intent);
     }
-
-    // A test for a http request
-    public void httpGet(View view) {
-        new TestTask().execute("https://tranquil-garden-87268.herokuapp.com/:id");
-
-    }
 }
