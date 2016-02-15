@@ -11,7 +11,6 @@ import android.view.View;
 
 public class WelcomeScreen extends AppCompatActivity {
 
-    MainDatabase mDB;
 
     private class TestTask extends AsyncTask<String, Long, String> {
         protected String doInBackground(String... urls) {
@@ -42,7 +41,6 @@ public class WelcomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
-        mDB = MainDatabase.getInstance(this);
     }
 
     @Override
@@ -71,15 +69,8 @@ public class WelcomeScreen extends AppCompatActivity {
     // Checks if someone is already logged in and redirects to the profile page if so
     public void goLoginScreen(View view) {
 
-        String userName = mDB.getLoginStatusTrue();
-        if (userName != null) {
-            Intent intent = new Intent(this, MainMenu.class);
-            intent.putExtra("USERNAME", userName);
-            startActivity(intent);
-        } else {
-            Intent intent = new Intent(this, login_screen.class);
-            startActivity(intent);
-        }
+        Intent intent = new Intent(this, login_screen.class);
+        startActivity(intent);
 
     }
 

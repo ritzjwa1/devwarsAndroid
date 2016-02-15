@@ -13,7 +13,6 @@ import android.widget.EditText;
 
 public class login_screen extends AppCompatActivity {
 
-    MainDatabase mDB;
     int loginAttempt;
     String username;
     String password;
@@ -23,7 +22,6 @@ public class login_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_screen);
-        mDB = MainDatabase.getInstance(this);
         loginAttempt = 3;
     }
 
@@ -94,36 +92,6 @@ public class login_screen extends AppCompatActivity {
             password = ed2.getText().toString();
             String url = "https://pandango.herokuapp.com/" + username + "/" + password;
             String response = new LoginTask().execute(url).toString();
-            /*Boolean isLogintrue = mDB.checkUserAndPassword(ed.getText().toString(), ed2.getText().toString());
-
-            if (isLogintrue) {
-                mDB.changeLoginStatusTrue(ed.getText().toString());
-                LoginStatus login = LoginStatus.newInstance(R.string.loginSuccess);
-                login.show(getFragmentManager(), "dialog");
-                username = ed.getText().toString();
-
-                new CountDownTimer(1500, 1000) {
-                    Intent intent;
-                    public void onTick(long millisUntilFinished) {
-                    }
-
-                    public void onFinish() {
-                        intent = new Intent(login_screen.this, MainMenu.class);
-                        intent.putExtra("USERNAME", login_screen.this.username);
-                        startActivity(intent);
-                    }
-                }.start();
-
-            } else {
-                LoginStatus login = LoginStatus.newInstance(R.string.loginFailure);
-                login.show(getFragmentManager(), "dialog");
-                loginAttempt--;
-            }
-        } else {
-            LoginStatus login = LoginStatus.newInstance(R.string.StopLogin);
-            login.show(getFragmentManager(), "dialog");
-        }*/
-        
         } else {
             LoginStatus login = LoginStatus.newInstance(R.string.StopLogin);
             login.show(getFragmentManager(), "dialog");

@@ -150,4 +150,52 @@ public class MainDatabase extends SQLiteOpenHelper {
             return false;
         }
     }
+
+
+    //Register_screen.java temp code
+    /*User newUser = new User(ed1.getText().toString(), ed2.getText().toString(), ed3.getText().toString(), ed4.getText().toString());
+            boolean addUserTrue = mDb.addUser(newUser);
+            if (!addUserTrue) {
+                LoginStatus checkRegisterStatus = LoginStatus.newInstance(R.string.register_status2);
+                checkRegisterStatus.show(getFragmentManager(), "dialog");
+            } else {
+                LoginStatus checkRegisterStatus = LoginStatus.newInstance(R.string.register_status3);
+                checkRegisterStatus.show(getFragmentManager(), "dialog");
+                ed1.setText("");
+                ed2.setText("");
+                ed3.setText("");
+                ed4.setText("");
+                ed5.setText("");
+            }*/
+
+    //Login_screen.java temp code
+    /*Boolean isLogintrue = mDB.checkUserAndPassword(ed.getText().toString(), ed2.getText().toString());
+
+            if (isLogintrue) {
+                mDB.changeLoginStatusTrue(ed.getText().toString());
+                LoginStatus login = LoginStatus.newInstance(R.string.loginSuccess);
+                login.show(getFragmentManager(), "dialog");
+                username = ed.getText().toString();
+
+                new CountDownTimer(1500, 1000) {
+                    Intent intent;
+                    public void onTick(long millisUntilFinished) {
+                    }
+
+                    public void onFinish() {
+                        intent = new Intent(login_screen.this, MainMenu.class);
+                        intent.putExtra("USERNAME", login_screen.this.username);
+                        startActivity(intent);
+                    }
+                }.start();
+
+            } else {
+                LoginStatus login = LoginStatus.newInstance(R.string.loginFailure);
+                login.show(getFragmentManager(), "dialog");
+                loginAttempt--;
+            }
+        } else {
+            LoginStatus login = LoginStatus.newInstance(R.string.StopLogin);
+            login.show(getFragmentManager(), "dialog");
+        }*/
 }

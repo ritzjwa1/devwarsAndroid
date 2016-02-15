@@ -1,18 +1,22 @@
 package com.example.bukbukbukh.movierating;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainMenu extends AppCompatActivity {
 
     String username;
-    MainDatabase mDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +24,6 @@ public class MainMenu extends AppCompatActivity {
         setContentView(R.layout.main_menu);
         Intent intent = getIntent();
         username = intent.getStringExtra("USERNAME");
-        mDb = MainDatabase.getInstance(this);
         TextView dispUserName = (TextView) findViewById(R.id.disp_username);
         dispUserName.setText("Welcome " + username);
         Log.d("anyString", username);
@@ -49,10 +52,38 @@ public class MainMenu extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private class Logout extends AsyncTask<String, Long, String> {
+        protected String doInBackground(String... urls) {
+            try {
+
+                HttpRequest request = HttpRequest.post(urls[0]);
+                String result = null;
+                if (request.ok()) {
+                    result = request.body();
+                }
+                return result;
+            } catch (HttpRequest.HttpRequestException exception) {
+                return null;
+            }
+        }
+
+        protected void onProgressUpdate(Long... progress) {
+            //Log.d("MyApp", "Downloaded bytes: " + progress[0]);
+        }
+
+        protected void onPostExecute(String file) {
+            if (file != null) {
+                Intent intent = new Intent(MainMenu.this, WelcomeScreen.class);
+                startActivity(intent);
+            }
+            else {
+                Log.d("MyApp", "Download failed");
+            }
+        }
+    }
+
     public void logout(View view) {
-        Intent intent = new Intent(this, WelcomeScreen.class);
-        mDb.changeLoginStatusFalse(username);
-        startActivity(intent);
+        new Logout().execute("https://pandango.herokuapp.com/changeLoginStatus/" + username);
     }
 
     public void goProfilePage(View view) {

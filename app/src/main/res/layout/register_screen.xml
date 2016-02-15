@@ -16,7 +16,10 @@
         android:layout_marginTop="58dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:lines="1"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -27,7 +30,10 @@
         android:id="@+id/last_name"
         android:layout_alignTop="@+id/first_name"
         android:layout_toRightOf="@+id/user_n"
-        android:layout_toEndOf="@+id/user_n" />
+        android:layout_toEndOf="@+id/user_n"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:lines="1"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -38,7 +44,10 @@
         android:id="@+id/user_n"
         android:layout_below="@+id/last_name"
         android:layout_toRightOf="@+id/first_name"
-        android:layout_toEndOf="@+id/first_name" />
+        android:layout_toEndOf="@+id/first_name"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:lines="1"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -50,7 +59,10 @@
         android:password="true"
         android:layout_below="@+id/user_n"
         android:layout_alignLeft="@+id/user_n"
-        android:layout_alignStart="@+id/user_n" />
+        android:layout_alignStart="@+id/user_n"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:lines="1"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -61,7 +73,10 @@
         android:password="true"
         android:id="@+id/conf_pass"
         android:layout_below="@+id/pass"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:lines="1"/>
 
     <Button
         android:layout_width="wrap_content"
