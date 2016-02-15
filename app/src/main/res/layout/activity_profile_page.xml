@@ -1,9 +1,10 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="com.example.bukbukbukh.movierating.ProfilePage">
 
     <EditText
@@ -17,18 +18,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Change "
-        android:id="@+id/c_password"
-        android:layout_marginTop="58dp"
-        android:layout_below="@+id/change_password2"
-        android:layout_centerHorizontal="true"
-        android:onClick="changePassword"/>
-
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="131dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text=""
@@ -40,4 +31,30 @@
         android:layout_alignStart="@+id/change_password"
         android:layout_marginTop="43dp" />
 
-</RelativeLayout>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/bio"
+        android:hint="bio"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/major"
+        android:hint="major"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Profile"
+        android:id="@+id/c_password"
+        android:layout_marginTop="65dp"
+        android:onClick="changePassword"
+        android:layout_below="@+id/change_password2"
+        android:layout_centerHorizontal="true" />
+
+</LinearLayout>

@@ -12,31 +12,6 @@ import android.view.View;
 public class WelcomeScreen extends AppCompatActivity {
 
 
-    private class TestTask extends AsyncTask<String, Long, String> {
-        protected String doInBackground(String... urls) {
-            try {
-                HttpRequest request = HttpRequest.get(urls[0]);
-                String file = null;
-                if (request.ok()) {
-                    file = request.body();
-                }
-                return file;
-            } catch (HttpRequest.HttpRequestException exception) {
-                return null;
-            }
-        }
-
-        protected void onProgressUpdate(Long... progress) {
-            //Log.d("MyApp", "Downloaded bytes: " + progress[0]);
-        }
-
-        protected void onPostExecute(String file) {
-            if (file != null)
-                Log.d("symbol", file);
-            else
-                Log.d("MyApp", "Download failed");
-        }
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

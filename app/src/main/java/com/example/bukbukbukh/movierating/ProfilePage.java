@@ -10,11 +10,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ProfilePage extends AppCompatActivity {
 
     String username;
     String password;
-
+    String bio;
+    String major;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,10 @@ public class ProfilePage extends AppCompatActivity {
     private class ChangeProfileTask extends AsyncTask<String, Long, String> {
         protected String doInBackground(String... urls) {
             try {
-                HttpRequest request = HttpRequest.post(urls[0]);
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("bio", bio);
+                map.put("major", major);
+                HttpRequest request = HttpRequest.post(urls[0]).form(map);
                 String result = null;
                 if (request.ok()) {
                     result = request.body();
@@ -81,11 +88,17 @@ public class ProfilePage extends AppCompatActivity {
     public void changePassword(View view) {
         EditText password1 = (EditText) findViewById(R.id.change_password);
         EditText password2 = (EditText) findViewById(R.id.change_password2);
+        EditText bioT = (EditText) findViewById(R.id.bio);
+        EditText majorT = (EditText) findViewById(R.id.major);
         password = password1.getText().toString();
+        bio = bioT.getText().toString();
+        major = majorT.getText().toString();
         if (password.equals(password2.getText().toString())) {
             new ChangeProfileTask().execute("https://pandango.herokuapp.com/editProfile/" + username + "/" + password);
         } else {
 
         }
+        /*profileChange login = profileChange.newInstance(R.string.changepassword, username);
+        login.show(getFragmentManager(), "dialog");*/
     }
 }

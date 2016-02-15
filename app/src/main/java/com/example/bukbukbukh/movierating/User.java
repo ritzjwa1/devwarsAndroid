@@ -8,6 +8,8 @@ public class User {
     String last_name;
     String user_name;
     String password;
+    String bio;
+    String major;
     private static int numOfUsers = 2;
 
 
