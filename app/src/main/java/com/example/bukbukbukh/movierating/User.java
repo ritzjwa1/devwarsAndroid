@@ -4,6 +4,9 @@ package com.example.bukbukbukh.movierating;
  * Created by bukbukbukh on 1/24/16.
  */
 public class User {
+    /**
+     * Instance variables for class user
+     */
     String first_name;
     String last_name;
     String user_name;
@@ -28,6 +31,10 @@ public class User {
         this.password = "";
     }
 
+
+    /**
+     * A bunch of getter and setter methods
+     */
     public String getFirst_name() {
         return first_name;
     }

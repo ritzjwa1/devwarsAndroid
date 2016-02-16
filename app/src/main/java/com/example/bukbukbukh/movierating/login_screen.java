@@ -25,6 +25,11 @@ public class login_screen extends AppCompatActivity {
         loginAttempt = 3;
     }
 
+
+    /**
+     * Async subclass to manage http request of logging in
+     * Throws exception if http request did not go through
+     */
     private class LoginTask extends AsyncTask<String, Long, String> {
         protected String doInBackground(String... urls) {
             try {
@@ -84,6 +89,14 @@ public class login_screen extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    /**
+     * Logs a user in based on the details in the two textboxes
+     * If the user has tried to login more than 3 times he is locked out
+     * Makes a Http Request which accesses a route on the server which checks the database
+     * to see if username exists and password matches
+     * @param view
+     */
     public void checkLoginIn(View view) {
         if (loginAttempt > 0) {
             EditText ed = (EditText) findViewById(R.id.user_name);
@@ -98,6 +111,10 @@ public class login_screen extends AppCompatActivity {
         }
     }
 
+    /**
+     * Cancels the login activity and returns to the welcome screen
+     * @param view
+     */
     public void cancelButton(View view) {
         Intent intent = new Intent(this, WelcomeScreen.class);
         startActivity(intent);

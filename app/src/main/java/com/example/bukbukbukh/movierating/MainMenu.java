@@ -22,6 +22,9 @@ public class MainMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_menu);
+        /**
+         * This code in the oncreate method stores the username to reference the database for any further information
+         */
         Intent intent = getIntent();
         username = intent.getStringExtra("USERNAME");
         TextView dispUserName = (TextView) findViewById(R.id.disp_username);
@@ -82,10 +85,20 @@ public class MainMenu extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * Making an http request to change the loginstatus to 0 after the logout button is pressed
+     * @param view
+     */
     public void logout(View view) {
         new Logout().execute("https://pandango.herokuapp.com/changeLoginStatus/" + username);
     }
 
+
+    /**
+     * Transitions to the profile page
+     * @param view
+     */
     public void goProfilePage(View view) {
         Intent intent = new Intent(this, ProfilePage.class);
         intent.putExtra("USER_NAME", username);

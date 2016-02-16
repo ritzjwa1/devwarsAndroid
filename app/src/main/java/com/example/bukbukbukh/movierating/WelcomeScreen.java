@@ -40,8 +40,10 @@ public class WelcomeScreen extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // Go to Login Screen
-    // Checks if someone is already logged in and redirects to the profile page if so
+    /** Go to Login Screen
+     *
+     * @param view
+     */
     public void goLoginScreen(View view) {
 
         Intent intent = new Intent(this, login_screen.class);
@@ -49,7 +51,10 @@ public class WelcomeScreen extends AppCompatActivity {
 
     }
 
-    // Goes to Register screen
+    /** Goes to Register screen
+     *
+     * @param view
+     */
     public void goRegisterScreen(View view) {
         Intent intent = new Intent(this, register_screen.class);
         startActivity(intent);

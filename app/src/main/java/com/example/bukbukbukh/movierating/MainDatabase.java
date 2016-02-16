@@ -7,7 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 /**
- * Created by bukbukbukh on 1/24/16.
+ * Created by Ganapathy Hari Narayan on 1/24/16.
+ * This is the backup Database sqlite class which is used if the heroku server goes down
  */
 public class MainDatabase extends SQLiteOpenHelper {
 

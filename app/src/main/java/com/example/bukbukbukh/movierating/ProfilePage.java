@@ -14,7 +14,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ProfilePage extends AppCompatActivity {
-
+    /**
+     * Storing the username and other details to use in other methods within this class
+     */
     String username;
     String password;
     String bio;
@@ -52,6 +54,9 @@ public class ProfilePage extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * An async call that helps in changing password, bio and major
+     */
     private class ChangeProfileTask extends AsyncTask<String, Long, String> {
         protected String doInBackground(String... urls) {
             try {
@@ -85,6 +90,12 @@ public class ProfilePage extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * Allows you to change password and edit bio and major
+     * Makes a http call to the database
+     * @param view
+     */
     public void changePassword(View view) {
         EditText password1 = (EditText) findViewById(R.id.change_password);
         EditText password2 = (EditText) findViewById(R.id.change_password2);

@@ -15,10 +15,14 @@ import java.util.Map;
 
 public class register_screen extends AppCompatActivity {
 
+    /**
+     * declaring variables that can be used all throughout the program
+     */
     String name;
     String username;
     String password;
     User globUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +52,10 @@ public class register_screen extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    /**
+     * An async subclass that completes the http post request for registering a user
+     */
     private class RegisterTask extends AsyncTask<String, Long, String> {
         protected String doInBackground(String... urls) {
             try {
@@ -98,6 +106,11 @@ public class register_screen extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * Registers a user by making a http call to the server and adding to the database
+     * @param view
+     */
     public void registerUser(View view) {
         EditText ed1 = (EditText) findViewById(R.id.first_name);
         EditText ed2 = (EditText) findViewById(R.id.last_name);
@@ -118,6 +131,11 @@ public class register_screen extends AppCompatActivity {
 
     }
 
+
+    /**
+     * Cancels the registration and returns to the Welcome screen
+     * @param view
+     */
     public void cancelButtonReg(View view) {
         Intent intent = new Intent(this, WelcomeScreen.class);
         startActivity(intent);

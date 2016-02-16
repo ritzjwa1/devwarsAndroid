@@ -7,7 +7,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 
 /**
- * Created by bukbukbukh on 1/25/16.
+ * Created by Ganapathy Hari Narayan on 1/25/16.
+ * This is implemented and basically shows login details, depening on the string that is passed in
  */
 public class LoginStatus extends DialogFragment {
 
