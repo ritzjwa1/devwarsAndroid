@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +30,6 @@ public class ProfilePage extends AppCompatActivity {
         Intent intent = getIntent();
         username = intent.getStringExtra("USER_NAME");
         Log.d("user", username);
-
     }
 
     @Override
@@ -89,7 +89,6 @@ public class ProfilePage extends AppCompatActivity {
             }
         }
     }
-
 
     /**
      * Allows you to change password and edit bio and major
