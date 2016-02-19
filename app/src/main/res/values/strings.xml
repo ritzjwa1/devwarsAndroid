@@ -13,5 +13,6 @@
     <string name="register_status2">User already exists</string>
     <string name="register_status3">Registration Successful </string>
     <string name="changepassword">Change Password </string>
+    <string name="no_movie_String">No Movie Typed In </string>
     <string name="title_activity_profile_page">ProfilePage</string>
 </resources>
