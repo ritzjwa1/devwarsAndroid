@@ -38,50 +38,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search Movies"
-        android:id="@+id/search_movie"
-        android:onClick="searchMoviesPage"
-        android:layout_below="@+id/searchMovie"
-        android:layout_toLeftOf="@+id/disp_username"
-        android:layout_toStartOf="@+id/disp_username" />
+        android:text="Search Pages"
+        android:id="@+id/go_search_page"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="goToSearchPages"/>
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/movieSearchResult"
-        android:layout_below="@+id/new_dvds"
-        android:layout_toStartOf="@+id/new_dvds"
-        android:layout_toLeftOf="@id/new_dvds"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text=""
-        android:hint="Movie Search"
-        android:id="@+id/searchMovie"
-        android:layout_below="@+id/profile_page"
-        android:layout_alignLeft="@+id/search_movie"
-        android:layout_alignStart="@+id/search_movie" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Releases"
-        android:id="@+id/new_releases"
-        android:layout_below="@+id/searchMovie"
-        android:layout_toRightOf="@+id/search_movie"
-        android:layout_toEndOf="@+id/search_movie"
-        android:onClick="searchNewRel"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New DVD's"
-        android:id="@+id/new_dvds"
-        android:layout_below="@+id/searchMovie"
-        android:layout_toRightOf="@+id/new_releases"
-        android:layout_toEndOf="@+id/new_releases"
-        android:onClick="searchNewDVD"/>
 
 </RelativeLayout>

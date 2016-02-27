@@ -62,6 +62,10 @@ http-request
             android:name=".ProfilePage"
             android:label="@string/title_activity_profile_page" >
         </activity>
+        <activity
+            android:name=".SearchPages"
+            android:label="@string/title_activity_search_pages" >
+        </activity>
     </application>
 
 </manifest>

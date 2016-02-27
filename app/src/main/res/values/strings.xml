@@ -15,4 +15,5 @@
     <string name="changepassword">Change Password </string>
     <string name="no_movie_String">No Movie Typed In </string>
     <string name="title_activity_profile_page">ProfilePage</string>
+    <string name="title_activity_search_pages">SearchPages</string>
 </resources>
