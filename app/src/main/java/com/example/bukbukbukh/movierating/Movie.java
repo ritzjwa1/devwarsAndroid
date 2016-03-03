@@ -1,13 +1,24 @@
 package com.example.bukbukbukh.movierating;
 
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
 /**
  * Created by bukbukbukh on 2/16/16.
  */
-public class Movie {
+public class Movie implements Serializable{
     private String title;
     private int year;
     private int runtime;
     private String synopsis;
+
+    public Movie() {
+        title = "";
+        year = 0;
+        runtime = 0;
+        synopsis = "";
+    }
 
     public Movie(String title, int year) {
         this.title = title;
@@ -44,5 +55,9 @@ public class Movie {
 
     public void setSynopsis(String str) {
         synopsis = str;
+    }
+
+    public String toString() {
+        return title;
     }
 }

@@ -52,8 +52,8 @@ public class login_screen extends AppCompatActivity {
             if (file != null) {
                 if (loginAttempt > 0) {
                     if (!file.equals("0")) {
-                        Intent intent = new Intent(login_screen.this, MainMenu.class);
-                        intent.putExtra("USERNAME", file);
+                        Intent intent = new Intent(login_screen.this, Home.class);
+                        intent.putExtra("USER_NAME", file);
                         startActivity(intent);
                     } else {
                         LoginStatus login = LoginStatus.newInstance(R.string.loginFailure);
@@ -103,7 +103,7 @@ public class login_screen extends AppCompatActivity {
             EditText ed2 = (EditText) findViewById(R.id.password);
             username = ed.getText().toString();
             password = ed2.getText().toString();
-            String url = "https://pandango.herokuapp.com/" + username + "/" + password;
+            String url = "https://pandango.herokuapp.com/getLoginStatus/" + username + "/" + password;
             String response = new LoginTask().execute(url).toString();
         } else {
             LoginStatus login = LoginStatus.newInstance(R.string.StopLogin);

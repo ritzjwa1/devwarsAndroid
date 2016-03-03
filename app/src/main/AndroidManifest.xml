@@ -55,7 +55,7 @@ http-request
             android:label="@string/title_activity_register_screen" >
         </activity>
         <activity
-            android:name=".MainMenu"
+            android:name=".Home"
             android:label="@string/title_activity_main_menu" >
         </activity>
         <activity
@@ -65,6 +65,18 @@ http-request
         <activity
             android:name=".SearchPages"
             android:label="@string/title_activity_search_pages" >
+        </activity>
+        <activity
+            android:name=".mainProfilePage"
+            android:label="@string/title_activity_main_profile_page" >
+        </activity>
+        <activity
+            android:name=".RateMovie"
+            android:label="@string/title_activity_rate_movie" >
+        </activity>
+        <activity
+            android:name=".RecentlyRated"
+            android:label="@string/title_activity_recently_rated" >
         </activity>
     </application>
 

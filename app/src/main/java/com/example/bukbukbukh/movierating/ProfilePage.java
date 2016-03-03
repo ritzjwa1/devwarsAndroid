@@ -80,7 +80,7 @@ public class ProfilePage extends AppCompatActivity {
 
         protected void onPostExecute(String file) {
             if (file != null) {
-                Intent intent = new Intent(ProfilePage.this, MainMenu.class);
+                Intent intent = new Intent(ProfilePage.this, Home.class);
                 intent.putExtra("USERNAME", username);
                 startActivity(intent);
             }

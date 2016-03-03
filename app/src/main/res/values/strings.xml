@@ -16,4 +16,7 @@
     <string name="no_movie_String">No Movie Typed In </string>
     <string name="title_activity_profile_page">ProfilePage</string>
     <string name="title_activity_search_pages">SearchPages</string>
+    <string name="title_activity_main_profile_page">mainProfilePage</string>
+    <string name="title_activity_rate_movie">RateMovie</string>
+    <string name="title_activity_recently_rated">RecentlyRated</string>
 </resources>

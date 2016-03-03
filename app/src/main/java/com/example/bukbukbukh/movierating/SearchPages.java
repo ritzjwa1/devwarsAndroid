@@ -1,12 +1,14 @@
 package com.example.bukbukbukh.movierating;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -24,13 +26,14 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class SearchPages extends AppCompatActivity {
+public class SearchPages extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
 
     String response;
     private RequestQueue queue;
     private String[] arrSTR;
     String username;
+    ArrayList<Movie> mainMovieList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +92,7 @@ public class SearchPages extends AppCompatActivity {
                             }
                             assert arr != null;
                             ListView lv = (ListView) findViewById(R.id.list_movies);
-                            ArrayList<Movie> mainMovieList = new ArrayList<Movie>();
+                            mainMovieList = new ArrayList<Movie>();
                             ArrayList<String> nameMovies = new ArrayList<String>();
                             JSONObject obj1 = null;
                             for (int i = 0; i < arr.length(); i++) {
@@ -106,6 +109,7 @@ public class SearchPages extends AppCompatActivity {
                             }
                             lv.setAdapter(new ArrayAdapter<String>(SearchPages.this,
                                     R.layout.list_item_movies, R.id.movieName, nameMovies));
+                            lv.setOnItemClickListener(SearchPages.this);
 
                         }
                     }, new Response.ErrorListener() {
@@ -143,7 +147,7 @@ public class SearchPages extends AppCompatActivity {
                         }
                         assert arr != null;
                         ListView lv = (ListView) findViewById(R.id.list_movies);
-                        ArrayList<Movie> mainMovieList = new ArrayList<Movie>();
+                        mainMovieList = new ArrayList<Movie>();
                         ArrayList<String> nameMovies = new ArrayList<String>();
                         JSONObject obj1 = null;
                         for (int i = 0; i < arr.length(); i++) {
@@ -160,6 +164,7 @@ public class SearchPages extends AppCompatActivity {
                         }
                         lv.setAdapter(new ArrayAdapter<String>(SearchPages.this,
                                 R.layout.list_item_movies, R.id.movieName, nameMovies));
+                        lv.setOnItemClickListener(SearchPages.this);
 
                     }
                 }, new Response.ErrorListener() {
@@ -196,7 +201,7 @@ public class SearchPages extends AppCompatActivity {
                         }
                         assert arr != null;
                         ListView lv = (ListView) findViewById(R.id.list_movies);
-                        ArrayList<Movie> mainMovieList = new ArrayList<Movie>();
+                        mainMovieList = new ArrayList<Movie>();
                         ArrayList<String> nameMovies = new ArrayList<String>();
                         JSONObject obj1 = null;
                         for (int i = 0; i < arr.length(); i++) {
@@ -213,6 +218,7 @@ public class SearchPages extends AppCompatActivity {
                         }
                         lv.setAdapter(new ArrayAdapter<String>(SearchPages.this,
                                 R.layout.list_item_movies, R.id.movieName, nameMovies));
+                        lv.setOnItemClickListener(SearchPages.this);
 
                     }
                 }, new Response.ErrorListener() {
@@ -226,5 +232,23 @@ public class SearchPages extends AppCompatActivity {
         //this actually queues up the async response with Volley
         queue.add(jsObjRequest);
 
+    }
+
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        // An item was selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(pos)
+        Intent intent = new Intent(this, RateMovie.class);
+        String cursor = (String) parent.getItemAtPosition(position);
+        Movie mainMovie = new Movie();
+        for (int i = 0; i < mainMovieList.size(); i++) {
+            if (cursor.equals(mainMovieList.get(i).getTitle())) {
+                mainMovie = mainMovieList.get(i);
+                break;
+            }
+        }
+        Log.d("MAINMOVIE", mainMovie.getTitle());
+        intent.putExtra("MOVIE", mainMovie);
+        intent.putExtra("USER_NAME", username);
+        startActivity(intent);
     }
 }
