@@ -10,9 +10,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/ratingBar"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/disp_average_rating"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="122dp" />
+        android:layout_marginTop="68dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,4 +23,33 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:hint="DispAverageRating"
+        android:id="@+id/disp_average_rating"
+        android:layout_marginTop="55dp"
+        android:layout_below="@+id/movie_name"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/recommend_movie"
+        android:layout_below="@+id/ratingBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recommend"
+        android:id="@+id/rec_mov"
+        android:layout_below="@+id/recommend_movie"
+        android:layout_centerHorizontal="true"
+        android:onClick="recMov"/>
 </RelativeLayout>

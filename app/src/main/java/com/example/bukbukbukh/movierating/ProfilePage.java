@@ -29,6 +29,7 @@ public class ProfilePage extends AppCompatActivity {
         setContentView(R.layout.activity_profile_page);
         Intent intent = getIntent();
         username = intent.getStringExtra("USER_NAME");
+        major = intent.getStringExtra("MAJOR");
         Log.d("user", username);
     }
 
@@ -81,7 +82,8 @@ public class ProfilePage extends AppCompatActivity {
         protected void onPostExecute(String file) {
             if (file != null) {
                 Intent intent = new Intent(ProfilePage.this, Home.class);
-                intent.putExtra("USERNAME", username);
+                intent.putExtra("USER_NAME", username);
+                intent.putExtra("MAJOR", major);
                 startActivity(intent);
             }
             else {

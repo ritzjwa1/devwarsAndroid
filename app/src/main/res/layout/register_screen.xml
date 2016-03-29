@@ -83,19 +83,20 @@
         android:layout_height="wrap_content"
         android:text="Register"
         android:id="@+id/reg_button"
-        android:layout_below="@+id/conf_pass"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="47dp"
-        android:onClick="registerUser"/>
+        android:onClick="registerUser"
+        android:layout_alignTop="@+id/canc_butt"
+        android:layout_alignLeft="@+id/conf_pass"
+        android:layout_alignStart="@+id/conf_pass" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cancel"
         android:id="@+id/canc_butt"
-        android:layout_below="@+id/reg_button"
-        android:layout_alignLeft="@+id/reg_button"
-        android:layout_alignStart="@+id/reg_button"
-        android:onClick="cancelButtonReg"/>
+        android:onClick="cancelButtonReg"
+        android:layout_marginBottom="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/pass"
+        android:layout_toEndOf="@+id/pass" />
 
 </RelativeLayout>

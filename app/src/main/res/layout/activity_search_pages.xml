@@ -40,11 +40,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/list_movies"
-        android:layout_alignRight="@+id/search_new_releases"
-        android:layout_alignEnd="@+id/search_new_releases"
         android:layout_below="@+id/search_movies"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/search_new_releases"
+        android:layout_toStartOf="@+id/search_new_releases" />
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,6 +53,16 @@
         android:hint="Movie Search"
         android:id="@+id/searchMovie"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/search_new_releases"
-        android:layout_toStartOf="@+id/search_new_releases" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SearchByMajor"
+        android:id="@+id/search_major"
+        android:layout_alignTop="@+id/list_movies"
+        android:layout_alignLeft="@+id/search_new_releases"
+        android:layout_alignStart="@+id/search_new_releases"
+        android:onClick="searchMajor"/>
 </RelativeLayout>

@@ -11,6 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class login_screen extends AppCompatActivity {
 
     int loginAttempt;
@@ -52,9 +56,25 @@ public class login_screen extends AppCompatActivity {
             if (file != null) {
                 if (loginAttempt > 0) {
                     if (!file.equals("0")) {
-                        Intent intent = new Intent(login_screen.this, Home.class);
-                        intent.putExtra("USER_NAME", file);
-                        startActivity(intent);
+                        try {
+                            JSONArray arr = new JSONArray(file);
+                            JSONObject obj = arr.getJSONObject(0);
+                            if (obj.getString("userType").equals("admin")) {
+                                Log.d("userType", obj.getString("userType"));
+                                Intent intent = new Intent(login_screen.this, AdminHome.class);
+                                intent.putExtra("USER_NAME", username);
+                                intent.putExtra("MAJOR", obj.getString("major"));
+                                startActivity(intent);
+                            } else {
+                                Intent intent = new Intent(login_screen.this, Home.class);
+                                intent.putExtra("USER_NAME", username);
+                                intent.putExtra("MAJOR", obj.getString("major"));
+                                startActivity(intent);
+                            }
+
+                        } catch(JSONException j) {
+
+                        }
                     } else {
                         LoginStatus login = LoginStatus.newInstance(R.string.loginFailure);
                         login.show(getFragmentManager(), "dialog");

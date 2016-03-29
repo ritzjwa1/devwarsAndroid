@@ -19,4 +19,7 @@
     <string name="title_activity_main_profile_page">mainProfilePage</string>
     <string name="title_activity_rate_movie">RateMovie</string>
     <string name="title_activity_recently_rated">RecentlyRated</string>
+    <string name="title_activity_admin_home">AdminHome</string>
+    <string name="title_activity_user_mod">UserMod</string>
+    <string name="title_activity_user_status">UserStatus</string>
 </resources>

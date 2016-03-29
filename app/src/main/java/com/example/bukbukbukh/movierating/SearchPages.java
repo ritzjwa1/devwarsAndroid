@@ -2,6 +2,7 @@ package com.example.bukbukbukh.movierating;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +34,7 @@ public class SearchPages extends AppCompatActivity implements AdapterView.OnItem
     private RequestQueue queue;
     private String[] arrSTR;
     String username;
+    String major;
     ArrayList<Movie> mainMovieList;
 
     @Override
@@ -41,6 +43,7 @@ public class SearchPages extends AppCompatActivity implements AdapterView.OnItem
         setContentView(R.layout.activity_search_pages);
         Intent intent = getIntent();
         username = intent.getStringExtra("USER_NAME");
+        major = intent.getStringExtra("MAJOR");
         queue = Volley.newRequestQueue(this);
     }
 
@@ -249,6 +252,59 @@ public class SearchPages extends AppCompatActivity implements AdapterView.OnItem
         Log.d("MAINMOVIE", mainMovie.getTitle());
         intent.putExtra("MOVIE", mainMovie);
         intent.putExtra("USER_NAME", username);
+        intent.putExtra("MAJOR", major);
         startActivity(intent);
+    }
+
+    public void searchMajor(View view) {
+        new SearchByMajor().execute("https://pandango.herokuapp.com/getMovieByMajor/" + major);
+
+    }
+
+    private class SearchByMajor extends AsyncTask<String, Long, String> {
+        protected String doInBackground(String... urls) {
+            try {
+                HttpRequest request = HttpRequest.get(urls[0]);
+                String result = null;
+                if (request.ok()) {
+                    result = request.body();
+                }
+                return result;
+            } catch (HttpRequest.HttpRequestException exception) {
+                return null;
+            }
+        }
+
+        protected void onProgressUpdate(Long... progress) {
+            //Log.d("MyApp", "Downloaded bytes: " + progress[0]);
+        }
+
+        protected void onPostExecute(String file) {
+            if (file != null) {
+                try {
+                    JSONArray arr = new JSONArray(file);
+                    ArrayList<String> list = new ArrayList<String>();
+                    JSONObject obj = null;
+                    mainMovieList = new ArrayList<Movie>();
+                    for (int i = 0; i < arr.length(); i++) {
+                        obj = arr.getJSONObject(i);
+                        list.add(obj.getString("movie_name"));
+                        Movie movie = new Movie(obj.getString("movie_name"), 0);
+                        Log.d("MOVIE DETALS", movie.getTitle());
+                        mainMovieList.add(movie);
+                        //mainMovieList.add(movie);
+                    }
+                    ListView lv = (ListView) findViewById(R.id.list_movies);
+                    lv.setAdapter(new ArrayAdapter<String>(SearchPages.this,
+                            R.layout.list_item_movies, R.id.movieName, list));
+                    lv.setOnItemClickListener(SearchPages.this);
+                } catch(JSONException j) {
+
+                }
+            }
+            else {
+                Log.d("MyApp", "Download failed");
+            }
+        }
     }
 }

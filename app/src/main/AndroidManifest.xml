@@ -78,6 +78,18 @@ http-request
             android:name=".RecentlyRated"
             android:label="@string/title_activity_recently_rated" >
         </activity>
+        <activity
+            android:name=".AdminHome"
+            android:label="@string/title_activity_admin_home" >
+        </activity>
+        <activity
+            android:name=".UserMod"
+            android:label="@string/title_activity_user_mod" >
+        </activity>
+        <activity
+            android:name=".UserStatus"
+            android:label="@string/title_activity_user_status" >
+        </activity>
     </application>
 
 </manifest>

@@ -14,14 +14,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Home extends AppCompatActivity {
+public class AdminHome extends AppCompatActivity {
 
     String username;
     String major;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home);
+        setContentView(R.layout.activity_admin_home);
         /**
          * This code in the oncreate method stores the username to reference the database for any further information
          */
@@ -37,7 +37,7 @@ public class Home extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main_menu, menu);
+        getMenuInflater().inflate(R.menu.menu_admin_home, menu);
         return true;
     }
 
@@ -77,44 +77,8 @@ public class Home extends AppCompatActivity {
 
         protected void onPostExecute(String file) {
             if (file != null) {
-                Intent intent = new Intent(Home.this, WelcomeScreen.class);
+                Intent intent = new Intent(AdminHome.this, WelcomeScreen.class);
                 startActivity(intent);
-            }
-            else {
-                Log.d("MyApp", "Download failed");
-            }
-        }
-    }
-
-    private class GetLoginAndMajor extends AsyncTask<String, Long, String> {
-        protected String doInBackground(String... urls) {
-            try {
-
-                HttpRequest request = HttpRequest.get(urls[0]);
-                String result = null;
-                if (request.ok()) {
-                    result = request.body();
-                }
-                return result;
-            } catch (HttpRequest.HttpRequestException exception) {
-                return null;
-            }
-        }
-
-        protected void onProgressUpdate(Long... progress) {
-            //Log.d("MyApp", "Downloaded bytes: " + progress[0]);
-        }
-
-        protected void onPostExecute(String file) {
-            if (file != null) {
-                try {
-                    JSONArray arr = new JSONArray(file);
-                    JSONObject obj = arr.getJSONObject(0);
-                    username = obj.getString("username");
-                    major = obj.getString("major");
-                } catch (JSONException j) {
-
-                }
             }
             else {
                 Log.d("MyApp", "Download failed");
@@ -158,6 +122,13 @@ public class Home extends AppCompatActivity {
     public void goRecentlyRated(View view) {
         Intent intent = new Intent(this, RecentlyRated.class);
         intent.putExtra("USER_NAME", username);
+        startActivity(intent);
+    }
+
+    public void userMod(View view) {
+        Intent intent = new Intent(this, UserMod.class);
+        intent.putExtra("USER_NAME", username);
+        intent.putExtra("MAJOR", major);
         startActivity(intent);
     }
 }

@@ -69,11 +69,21 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GET"
-        android:id="@+id/GET"
+        android:text="Edit Profile"
+        android:id="@+id/edit_profile"
         android:layout_centerVertical="true"
         android:layout_alignRight="@+id/major_main"
         android:layout_alignEnd="@+id/major_main"
-        android:onClick="getProfile"/>
+        android:onClick="editProfile"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:id="@+id/go_home"
+        android:onClick="goHome"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/edit_profile"
+        android:layout_alignStart="@+id/edit_profile" />
 
 </RelativeLayout>

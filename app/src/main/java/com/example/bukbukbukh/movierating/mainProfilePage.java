@@ -18,6 +18,7 @@ import org.json.JSONObject;
 public class mainProfilePage extends AppCompatActivity {
 
     String username;
+    String major;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,7 @@ public class mainProfilePage extends AppCompatActivity {
         Intent intent = getIntent();
         username = intent.getStringExtra("USER_NAME");
         Log.d("UserName", username);
-
+        major = intent.getStringExtra("MAJOR");
         String url = "https://pandango.herokuapp.com/showProfile/" + username;
         String response = new LoginTask().execute(url).toString();
     }
@@ -67,6 +68,7 @@ public class mainProfilePage extends AppCompatActivity {
                     ed1.setText(obj.getString("name"));
                     ed2.setText(obj.getString("major"));
                     ed3.setText(obj.getString("bio"));
+                    major = obj.getString("major");
                 } catch(JSONException e) {
 
                 }
@@ -90,5 +92,19 @@ public class mainProfilePage extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void editProfile(View view) {
+        Intent intent = new Intent(this, ProfilePage.class);
+        intent.putExtra("USER_NAME", username);
+        intent.putExtra("MAJOR", major);
+        startActivity(intent);
+    }
+
+    public void goHome(View view) {
+        Intent intent = new Intent(this, Home.class);
+        intent.putExtra("USER_NAME", username);
+        intent.putExtra("MAJOR", major);
+        startActivity(intent);
     }
 }

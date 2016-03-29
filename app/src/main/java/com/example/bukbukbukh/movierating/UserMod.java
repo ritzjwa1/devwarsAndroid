@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -16,26 +17,25 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-public class RecentlyRated extends AppCompatActivity {
+public class UserMod extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
+    ArrayList<String> userList;
     String username;
-
+    String major;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recently_rated);
-        Intent intent = getIntent();
-        username = intent.getStringExtra("USER_NAME");
-        new DispRating().execute("https://pandango.herokuapp.com/dispRecentRated/" + username);
+        setContentView(R.layout.activity_user_mod);
+        new UserList().execute("https://pandango.herokuapp.com/getUserIds");
+        username = getIntent().getStringExtra("USER_NAME");
+        major = getIntent().getStringExtra("MAJOR");
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_recently_rated, menu);
+        getMenuInflater().inflate(R.menu.menu_user_mod, menu);
         return true;
     }
 
@@ -54,9 +54,10 @@ public class RecentlyRated extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private class DispRating extends AsyncTask<String, Long, String> {
+    private class UserList extends AsyncTask<String, Long, String> {
         protected String doInBackground(String... urls) {
             try {
+
                 HttpRequest request = HttpRequest.get(urls[0]);
                 String result = null;
                 if (request.ok()) {
@@ -64,7 +65,6 @@ public class RecentlyRated extends AppCompatActivity {
                 }
                 return result;
             } catch (HttpRequest.HttpRequestException exception) {
-                Log.d("PROBLEM", "PROBLEM");
                 return null;
             }
         }
@@ -75,26 +75,25 @@ public class RecentlyRated extends AppCompatActivity {
 
         protected void onPostExecute(String file) {
             if (file != null) {
-                Log.d("RESULT", file);
-                ListView lv = (ListView) findViewById(R.id.list_recently_rated);
                 try {
-                    JSONArray jsA = new JSONArray(file);
-                    ArrayList<String> mainMovieList = new ArrayList<String>();
+                    JSONArray arr = new JSONArray(file);
+                    ListView lv = (ListView) findViewById(R.id.user_list);
+                    userList = new ArrayList<String>();
                     JSONObject obj1 = null;
-                    for (int i = 0; i < jsA.length(); i++) {
+                    for (int i = 0; i < arr.length(); i++) {
                         try {
-                            obj1 = jsA.getJSONObject(i);
-                            mainMovieList.add(obj1.getString("movie_name") + ": Rating = " + obj1.getString("rating"));
+                            obj1 = arr.getJSONObject(i);
+                            userList.add(obj1.getString("username"));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
-                    lv.setAdapter(new ArrayAdapter<String>(RecentlyRated.this,
-                            R.layout.list_item_movies, R.id.movieName, mainMovieList));
-                } catch (JSONException e) {
-                    Log.d("NULL", "NULL");
-                }
+                    lv.setAdapter(new ArrayAdapter<String>(UserMod.this,
+                            R.layout.list_item_movies, R.id.movieName, userList));
+                    lv.setOnItemClickListener(UserMod.this);
+                } catch (JSONException j) {
 
+                }
             }
             else {
                 Log.d("MyApp", "Download failed");
@@ -102,9 +101,14 @@ public class RecentlyRated extends AppCompatActivity {
         }
     }
 
-    public void goBackHome(View view) {
-        Intent intent = new Intent(this, Home.class);
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        // An item was selected. You can retrieve the selected item using
+        // parent.getItemAtPosition(pos)
+        Intent intent = new Intent(this, UserStatus.class);
+        String cursor = (String) parent.getItemAtPosition(position);
         intent.putExtra("USER_NAME", username);
+        intent.putExtra("MAJOR", major);
+        intent.putExtra("USER", cursor);
         startActivity(intent);
     }
 }
