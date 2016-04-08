@@ -70,4 +70,13 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String strongPassword() {
+        if(password.length() > 8) {
+            return "This password is okay";
+        } else {
+            return "Please type a stronger password"
+        }
+    }
+
 }
